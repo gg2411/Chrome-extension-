@@ -5,6 +5,8 @@ const DEFAULT_SETTINGS = {
   apiKey: "",
   model: "gpt-4o-mini",
   customEndpoint: "",
+  useCustomPrompt: false,
+  customPrompt: "",
 };
 
 async function getSettings() {
@@ -15,26 +17,28 @@ async function getSettings() {
   });
 }
 
-function buildPrompt({ selectedText, surroundingContext, pageTitle, pageDomain }) {
-  let contextHint = "";
-  if (pageDomain) {
-    contextHint += `The user is reading a page on **${pageDomain}**`;
-    if (pageTitle) {
-      contextHint += ` titled "${pageTitle}"`;
-    }
-    contextHint += ".\n";
-  }
-  if (surroundingContext && surroundingContext !== selectedText) {
-    contextHint += `Surrounding text for context:\n"${surroundingContext}"\n`;
-  }
+const DEFAULT_PROMPT_TEMPLATE = `You are a concise explainer. The user highlighted the following text and wants to understand what it means in context.
 
-  return `You are a concise explainer. The user highlighted the following text and wants to understand what it means in context.
+The user is reading a page on {{pageDomain}} titled "{{pageTitle}}".
+Surrounding text for context:
+"{{surroundingContext}}"
 
-${contextHint}
 Highlighted text:
-"${selectedText}"
+"{{selectedText}}"
 
 Provide a clear, concise explanation (2-4 sentences). Focus on what this means in the specific context of the page. If it's jargon or a domain-specific term, explain it in plain language. Do not repeat the highlighted text back. Do not use filler phrases like "This refers to..." — just explain directly.`;
+
+function buildPrompt(payload, settings) {
+  const template = settings.useCustomPrompt && settings.customPrompt
+    ? settings.customPrompt
+    : DEFAULT_PROMPT_TEMPLATE;
+
+  return template
+    .replace(/\{\{selectedText\}\}/g, payload.selectedText || "")
+    .replace(/\{\{surroundingContext\}\}/g, payload.surroundingContext || "")
+    .replace(/\{\{pageTitle\}\}/g, payload.pageTitle || "")
+    .replace(/\{\{pageDomain\}\}/g, payload.pageDomain || "")
+    .replace(/\{\{pageUrl\}\}/g, payload.pageUrl || "");
 }
 
 async function callOpenAI(settings, prompt) {
@@ -99,7 +103,7 @@ async function getExplanation(payload) {
     );
   }
 
-  const prompt = buildPrompt(payload);
+  const prompt = buildPrompt(payload, settings);
 
   if (settings.provider === "anthropic") {
     return callAnthropic(settings, prompt);

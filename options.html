@@ -35,7 +35,7 @@
       margin-top: 0;
     }
 
-    select, input[type="text"], input[type="password"] {
+    select, input[type="text"], input[type="password"], textarea {
       width: 100%;
       padding: 8px 10px;
       font-size: 13px;
@@ -47,8 +47,57 @@
       transition: border-color 0.15s;
     }
 
-    select:focus, input:focus {
+    select:focus, input:focus, textarea:focus {
       border-color: #6666bb;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .prompt-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+
+    .prompt-toggle label {
+      margin: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .prompt-toggle input[type="checkbox"] {
+      width: auto;
+      accent-color: #6666bb;
+      cursor: pointer;
+    }
+
+    #custom-prompt-group {
+      display: none;
+    }
+
+    .default-prompt-preview {
+      font-size: 11.5px;
+      color: #666;
+      background: #12192e;
+      border: 1px solid #2a2a50;
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-top: 6px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+      max-height: 100px;
+      overflow-y: auto;
     }
 
     .hint {
@@ -115,6 +164,23 @@
     <label for="custom-endpoint">Custom API Endpoint</label>
     <input type="text" id="custom-endpoint" placeholder="https://your-server.com">
     <div class="hint">Base URL — /v1/chat/completions will be appended automatically.</div>
+  </div>
+
+  <div class="prompt-toggle">
+    <label>
+      <input type="checkbox" id="use-custom-prompt">
+      <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: #8888cc;">Use Custom Prompt</span>
+    </label>
+  </div>
+  <div class="hint">When off, the built-in default prompt is used:</div>
+  <div class="default-prompt-preview" id="default-prompt-preview"></div>
+
+  <div id="custom-prompt-group">
+    <label for="custom-prompt">Custom Prompt</label>
+    <textarea id="custom-prompt" rows="6" placeholder="Write your custom prompt here..."></textarea>
+    <div class="hint">
+      Available placeholders: <code>{{selectedText}}</code>, <code>{{surroundingContext}}</code>, <code>{{pageTitle}}</code>, <code>{{pageDomain}}</code>, <code>{{pageUrl}}</code>
+    </div>
   </div>
 
   <button class="btn" id="save">Save</button>
