@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Sentence Explainer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #0f0f1a;
+      color: #d4d4d4;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 36px;
+    }
+    h2 {
+      font-size: 18px;
+      color: #aaaaee;
+      margin-top: 32px;
+      margin-bottom: 10px;
+    }
+    p, li {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+    ul {
+      padding-left: 24px;
+      margin-bottom: 12px;
+    }
+    li { margin-bottom: 6px; }
+    strong { color: #e0e0e0; }
+    a { color: #8888cc; }
+    .footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #222;
+      font-size: 13px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">Sentence Explainer — Chrome Extension<br>Last updated: February 6, 2026</p>
+
+    <h2>Overview</h2>
+    <p>Sentence Explainer is a Chrome extension that provides AI-powered explanations for highlighted text on webpages. We are committed to protecting your privacy. This policy explains what data the extension accesses, how it is used, and what is stored.</p>
+
+    <h2>Data Collection</h2>
+    <p><strong>We do not collect, store, or transmit any personal data to our own servers.</strong> The extension has no backend, no analytics, and no tracking of any kind.</p>
+
+    <h2>Data the Extension Accesses</h2>
+    <p>When you highlight text and middle-click, the extension temporarily reads:</p>
+    <ul>
+      <li><strong>Selected text</strong> — the text you highlighted</li>
+      <li><strong>Surrounding context</strong> — the paragraph or block containing the selection</li>
+      <li><strong>Page metadata</strong> — the page title, URL, and domain name</li>
+    </ul>
+    <p>This data is used solely to construct a prompt for the AI provider you have configured. It is sent directly from your browser to your chosen API provider (OpenAI, Anthropic, or a custom endpoint) and is <strong>not</strong> sent to or processed by us.</p>
+
+    <h2>API Keys</h2>
+    <p>Your API key is stored locally in your browser using Chrome's <code>chrome.storage.sync</code> API. This means:</p>
+    <ul>
+      <li>The key is stored on your device and synced across your Chrome browsers if you are signed into Chrome</li>
+      <li>The key is only sent to the API provider you selected (OpenAI, Anthropic, or your custom endpoint)</li>
+      <li>We never have access to your API key</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+    <p>The extension sends data to third-party AI providers based on your configuration:</p>
+    <ul>
+      <li><strong>OpenAI</strong> — <a href="https://openai.com/privacy" target="_blank">OpenAI Privacy Policy</a></li>
+      <li><strong>Anthropic</strong> — <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic Privacy Policy</a></li>
+      <li><strong>Custom endpoint</strong> — governed by the privacy policy of whichever service you configure</li>
+    </ul>
+    <p>We encourage you to review the privacy policy of your chosen AI provider.</p>
+
+    <h2>Permissions</h2>
+    <ul>
+      <li><strong>activeTab</strong> — to read selected text and page context only when you trigger an explanation</li>
+      <li><strong>storage</strong> — to save your settings (API key, provider, model, custom prompt) locally</li>
+      <li><strong>Host permissions (api.openai.com, api.anthropic.com)</strong> — to send requests to AI providers on your behalf</li>
+    </ul>
+
+    <h2>Data Retention</h2>
+    <p>The extension does not retain any page content or explanation results. Selected text and context exist only in memory for the duration of a single request and are discarded immediately after the AI response is displayed.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>This extension is not directed at children under 13. We do not knowingly collect any information from children.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>If this privacy policy is updated, the changes will be posted on this page with an updated date. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>Contact</h2>
+    <p>If you have questions about this privacy policy, please open an issue on our <a href="https://github.com/gg2411/Chrome-extension-" target="_blank">GitHub repository</a>.</p>
+
+    <div class="footer">
+      &copy; 2026 Sentence Explainer. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
