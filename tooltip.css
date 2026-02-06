@@ -1,0 +1,150 @@
+/* Sentence Explainer - Tooltip Styles */
+/* All selectors scoped with .se- prefix to avoid page conflicts */
+
+.se-tooltip {
+  position: absolute;
+  z-index: 2147483647;
+  width: 380px;
+  max-width: calc(100vw - 24px);
+  max-height: 340px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  border: 1px solid #333366;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.se-tooltip[hidden] {
+  display: none !important;
+}
+
+/* Header */
+.se-tooltip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #16213e;
+  border-bottom: 1px solid #333366;
+  flex-shrink: 0;
+}
+
+.se-tooltip-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8888cc;
+}
+
+.se-tooltip-close {
+  background: none;
+  border: none;
+  color: #777;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.se-tooltip-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Body */
+.se-tooltip-body {
+  padding: 12px 14px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Loading state */
+.se-tooltip-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #999;
+  font-size: 13px;
+}
+
+.se-tooltip-loading[hidden] {
+  display: none !important;
+}
+
+.se-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #333;
+  border-top-color: #8888cc;
+  border-radius: 50%;
+  animation: se-spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes se-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Content */
+.se-tooltip-content {
+  color: #d4d4d4;
+}
+
+.se-tooltip-content[hidden] {
+  display: none !important;
+}
+
+.se-tooltip-content p {
+  margin: 0 0 8px 0;
+}
+
+.se-tooltip-content p:last-child {
+  margin-bottom: 0;
+}
+
+.se-tooltip-content strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.se-tooltip-content code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+  font-size: 12.5px;
+}
+
+/* Error */
+.se-error {
+  color: #e57373;
+}
+
+/* Scrollbar */
+.se-tooltip-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.se-tooltip-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.se-tooltip-body::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.se-tooltip-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

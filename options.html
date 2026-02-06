@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 20px 24px;
+      min-width: 420px;
+    }
+
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #8888cc;
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+
+    label:first-of-type {
+      margin-top: 0;
+    }
+
+    select, input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 13px;
+      background: #16213e;
+      color: #e0e0e0;
+      border: 1px solid #333366;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    select:focus, input:focus {
+      border-color: #6666bb;
+    }
+
+    .hint {
+      font-size: 11.5px;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 20px;
+      background: #4444aa;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn:hover {
+      background: #5555bb;
+    }
+
+    .status {
+      display: inline-block;
+      margin-left: 12px;
+      font-size: 13px;
+      color: #66bb6a;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .status.show {
+      opacity: 1;
+    }
+
+    #custom-endpoint-group {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sentence Explainer Settings</h1>
+
+  <label for="provider">AI Provider</label>
+  <select id="provider">
+    <option value="openai">OpenAI</option>
+    <option value="anthropic">Anthropic (Claude)</option>
+    <option value="custom">Custom (OpenAI-compatible)</option>
+  </select>
+
+  <label for="api-key">API Key</label>
+  <input type="password" id="api-key" placeholder="sk-..." autocomplete="off">
+  <div class="hint">Your key is stored locally in Chrome sync storage and never sent anywhere except your chosen API.</div>
+
+  <label for="model">Model</label>
+  <input type="text" id="model" placeholder="gpt-4o-mini">
+  <div class="hint" id="model-hint">e.g. gpt-4o-mini, gpt-4o, gpt-3.5-turbo</div>
+
+  <div id="custom-endpoint-group">
+    <label for="custom-endpoint">Custom API Endpoint</label>
+    <input type="text" id="custom-endpoint" placeholder="https://your-server.com">
+    <div class="hint">Base URL — /v1/chat/completions will be appended automatically.</div>
+  </div>
+
+  <button class="btn" id="save">Save</button>
+  <span class="status" id="status">Saved!</span>
+
+  <script src="options.js"></script>
+</body>
+</html>

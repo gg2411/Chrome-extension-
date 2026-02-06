@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><title>Icon Generator</title></head>
+<body>
+<p>Right-click each canvas → Save image as → icon16.png / icon48.png / icon128.png</p>
+<canvas id="c16" width="16" height="16"></canvas>
+<canvas id="c48" width="48" height="48"></canvas>
+<canvas id="c128" width="128" height="128"></canvas>
+<script>
+function drawIcon(canvas) {
+  const s = canvas.width;
+  const ctx = canvas.getContext("2d");
+
+  // Background circle
+  ctx.beginPath();
+  ctx.arc(s/2, s/2, s/2 - 1, 0, Math.PI * 2);
+  ctx.fillStyle = "#4444aa";
+  ctx.fill();
+
+  // "?" text
+  ctx.fillStyle = "#ffffff";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = `bold ${Math.round(s * 0.55)}px -apple-system, sans-serif`;
+  ctx.fillText("?", s/2, s/2 + 1);
+}
+
+[16, 48, 128].forEach(size => {
+  drawIcon(document.getElementById("c" + size));
+});
+</script>
+</body>
+</html>

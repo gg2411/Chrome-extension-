@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      width: 300px;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .header img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .header h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .instructions {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #bbb;
+    }
+
+    .instructions strong {
+      color: #fff;
+    }
+
+    .step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: #333366;
+      color: #8888cc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .step-text {
+      font-size: 13px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #333366;
+      margin: 16px 0;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .status-dot.ok { background: #66bb6a; }
+    .status-dot.err { background: #e57373; }
+
+    .status-text {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .settings-link {
+      font-size: 12px;
+      color: #8888cc;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .settings-link:hover {
+      text-decoration: underline;
+      color: #aaaaee;
+    }
+
+    kbd {
+      background: #16213e;
+      border: 1px solid #333366;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-family: inherit;
+      font-size: 12px;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="icons/icon48.png" alt="icon">
+    <h1>Sentence Explainer</h1>
+  </div>
+
+  <div class="instructions">
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-text"><strong>Highlight</strong> any text on a webpage</span>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-text"><strong>Middle-click</strong> (scroll wheel click) on the selection</span>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-text">Get an instant <strong>contextual explanation</strong></span>
+    </div>
+  </div>
+
+  <p style="font-size: 12px; color: #777; margin-top: 8px;">
+    Press <kbd>Esc</kbd> or click away to dismiss the tooltip.
+  </p>
+
+  <hr class="divider">
+
+  <div class="status-row">
+    <span>
+      <span class="status-dot" id="status-dot"></span>
+      <span class="status-text" id="status-text">Checking...</span>
+    </span>
+    <a class="settings-link" id="open-options">Settings</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
